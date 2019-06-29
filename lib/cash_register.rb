@@ -1,7 +1,7 @@
-require 'pry'
+
 class CashRegister
-    attr_reader :quantity
-    attr_accessor :total,:discount,:items
+    attr_reader :quantity,:discount
+    attr_accessor :total,:items
   
     def initialize(discount = 0)
         @discount = discount
@@ -11,12 +11,9 @@ class CashRegister
     end
     def add_item(title,price,quantity = 1)
         @total = total + (price * quantity)
-        quantity.times do 
-            items << title
-        end 
+        quantity.times { items << title }  
     end 
     def apply_discount
-        binding.pry 
         if @discount == 0
             "There is no discount to apply."
         else
